@@ -1,15 +1,16 @@
 {
-  "name": "react-flux-boilerplate",
+  "name": "udkme-web",
   "version": "0.0.1",
-  "description": "Boilerplate for a React + Flux app.",
+  "description": "Front-end for You Don't Know Me. Hack Upstate Fall 2015.",
   "scripts": {
     "clean": "rm -rf public/*",
     "lint": "eslint src",
     "dev": "npm run clean && nodemon --exec babel-node --stage 0 -- dev-server.js",
-    "build": "npm run clean && webpack --progress --colors --config config/webpack.production.js"
+    "build": "npm run clean && webpack --progress --colors --config config/webpack.production.js",
+    "stage": "NODE_ENV=production npm run build && surge --project ./build --domain udontknowme.surge.sh"
   },
   "author": "Billy Ceskavich",
-  "repository": "https://github.com/bceskavich/react-flux-boilerplate",
+  "repository": "https://github.com/bceskavich/udkme-web",
   "dependencies": {
     "alt": "^0.17.1",
     "autoprefixer-loader": "^2.0.0",
@@ -18,6 +19,7 @@
     "babel-relay-plugin": "^0.2.2",
     "config": "^1.15.0",
     "css-loader": "^0.15.2",
+    "css-patterns": "^0.2.0",
     "express": "^4.13.1",
     "extract-text-webpack-plugin": "^0.8.2",
     "history": "^1.9.0",

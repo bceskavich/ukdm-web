@@ -5,11 +5,10 @@ class AppStore {
   constructor() {
     this.bindActions(AppActions);
 
-    this.something = false;
-  }
-
-  onDoSomething(state) {
-    this.something = state;
+    this.playersList = [
+      'jordan',
+      'john'
+    ];
   }
 }
 

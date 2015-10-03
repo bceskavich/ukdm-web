@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 import connectToStores from 'alt/utils/connectToStores';
 import AppStore from './stores/AppStore';
 
@@ -14,9 +14,11 @@ export default class App extends Component {
   }
 
   render() {
+    const { playersList } = this.props;
+
     return (
       <div className='body'>
-        {this.props.children}
+        {this.props.children && cloneElement(this.props.children, {playersList})}
       </div>
     );
   }

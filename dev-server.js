@@ -10,7 +10,6 @@ import WebpackDevConfig from './config/webpack.development';
 const APP_PORT = config.get('server.port');
 const WEBPACK_PORT = config.get('webpackServer.port');
 
-
 // B) App server
 let app = express();
 app.use('/assets', proxy(url.parse(`http://localhost:${WEBPACK_PORT}/assets`)));
