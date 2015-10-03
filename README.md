@@ -1,3 +1,3 @@
-# React Flux Boilerplate
+# U Don't Know Me - Front-End
 
-A boilerplate for apps built with React and Flux (via Alt).
+Hack Upstate Fall 2015.
