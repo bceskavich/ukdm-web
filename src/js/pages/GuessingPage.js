@@ -4,7 +4,8 @@ import AppActions from '../actions/AppActions';
 
 export default class GuessingPage extends Component {
   render() {
-    const { answers, aboutMe, guessSubmitted } = this.props;
+    const { answers, aboutMe, guessSubmitted, playerName } = this.props;
+    const answersForDisplay = answers.filter(answer => answer[0] !== playerName);
 
     return (
       <div className='guessing-page'>
@@ -18,7 +19,7 @@ export default class GuessingPage extends Component {
               <div>
                 <h2>The Answers</h2>
                 <ul>
-                  {answers.map(answer => {
+                  {answersForDisplay.map(answer => {
                     return (
                       <GuessingItem
                         answer={answer}

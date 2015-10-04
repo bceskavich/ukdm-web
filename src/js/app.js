@@ -1,35 +1,38 @@
 import React, { Component, PropTypes, cloneElement } from 'react';
+import merge from 'lodash.merge';
 import connectToStores from 'alt/utils/connectToStores';
 import AppStore from './stores/AppStore';
+import GameControllerStore from './stores/GameControllerStore';
 import AppActions from './actions/AppActions';
 
 @connectToStores
 export default class App extends Component {
 
-  static propTypes = {
-    appState: PropTypes.string.isRequired,
-    playerName: PropTypes.string.isRequired,
-    question: PropTypes.string.isRequired,
-    aboutMe: PropTypes.bool.isRequired
-  }
-
   static getStores() {
-    return [AppStore];
+    return [AppStore, GameControllerStore];
   }
 
   static getPropsFromStores() {
-    return AppStore.getState();
+    const {
+      players,
+      questionAbout,
+      submittedQuestions,
+      submittedGuesses,
+      guessResults
+    } = GameControllerStore.getState();
+
+    return merge(AppStore.getState(), {
+      players,
+      questionAbout,
+      submittedQuestions,
+      submittedGuesses,
+      guessResults
+    });
   }
 
   constructor(props) {
     super(props);
     AppActions.connection();
-  }
-
-  // REMOVE - for testing
-  componentDidUpdate() {
-    const { appState } = this.props;
-    console.log(appState);
   }
 
   render() {

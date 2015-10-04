@@ -54,10 +54,10 @@ class AppActions {
     }));
   }
 
-  submitVote(name, answerVotedFor, conn) {
+  submitVote(name, playerVotedFor, conn) {
     conn.send(JSON.stringify({
       name,
-      answer_voted_for: answerVotedFor,
+      player_voted_for: playerVotedFor,
       state: 'guessing'
     }));
 

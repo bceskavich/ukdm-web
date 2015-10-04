@@ -11,6 +11,10 @@ export default class HomePage extends Component {
             className='home-page__link'
             to='/player-signup'
           >Sign Up To Play</Link>
+          <Link
+            className='home-page__link'
+            to='/game-console'
+          >Start A Game</Link>
         </div>
       </div>
     );

@@ -7,11 +7,13 @@ import PlayerSignupPage from '../pages/PlayerSignupPage';
 import LobbyPage from '../pages/LobbyPage';
 import QuestionPage from '../pages/QuestionPage';
 import GuessingPage from '../pages/GuessingPage';
+import GameConsolePage from '../pages/GameConsolePage';
 
 const router = (
   <Router>
     <Route component={App}>
       <Route path='/' component={HomePage} />
+      <Route path='/game-console' component={GameConsolePage} />
       <Route path='/player-signup' component={PlayerSignupPage} />
 
       <Route component={InGame}>
