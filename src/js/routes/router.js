@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Router } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from '../app';
 import InGame from '../wrappers/InGame';
 import HomePage from '../pages/HomePage';
@@ -10,7 +11,7 @@ import GuessingPage from '../pages/GuessingPage';
 import GameConsolePage from '../pages/GameConsolePage';
 
 const router = (
-  <Router>
+  <Router history={createBrowserHistory()}>
     <Route component={App}>
       <Route path='/' component={HomePage} />
       <Route path='/game-console' component={GameConsolePage} />

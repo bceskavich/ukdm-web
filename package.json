@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "description": "Front-end for You Don't Know Me. Hack Upstate Fall 2015.",
   "scripts": {
-    "clean": "rm -rf public/*",
+    "clean": "rm -rf build/*",
     "lint": "eslint src",
     "dev": "npm run clean && nodemon --exec babel-node --stage 0 -- dev-server.js",
+    "start": "NODE_ENV=production npm run build && babel-node --stage 0 -- server.js",
     "build": "npm run clean && webpack --progress --colors --config config/webpack.production.js",
     "stage": "NODE_ENV=production npm run build && surge --project ./build --domain udontknowme.surge.sh"
+  },
+  "engines": {
+    "node": "4.0.0"
   },
   "author": "Billy Ceskavich",
   "repository": "https://github.com/bceskavich/udkme-web",

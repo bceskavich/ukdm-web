@@ -13,7 +13,7 @@ const WEBPACK_PORT = config.get('webpackServer.port');
 // B) App server
 let app = express();
 app.use('/assets', proxy(url.parse(`http://localhost:${WEBPACK_PORT}/assets`)));
-app.use('/', (req, res) => {
+app.use('*', (req, res) => {
   request.get(`http://localhost:${WEBPACK_PORT}/assets/index.html`).pipe(res);
 });
 
