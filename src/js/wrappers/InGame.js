@@ -63,7 +63,7 @@ export default class InGame extends Component {
     const { appState, history, location } = this.props;
     if ((appState === states.START || appState === states.ANSWER) && location.pathname !== '/question') {
       history.pushState(null, '/question');
-    } else if (appState === states.GUESSING && location.pathname !== '/guessing') {
+    } else if ((appState === states.GUESSING || appState === states.RESULTS) && location.pathname !== '/guessing') {
       history.pushState(null, '/guessing');
     } else if (appState === states.END) {
       AppActions.resetAndEnd();

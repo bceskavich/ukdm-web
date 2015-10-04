@@ -1,5 +1,5 @@
 import alt from '../alt';
-import { states } from '../constants/states';
+import { states, userTypes, messages } from '../constants/states';
 
 class AppActions {
   constructor() {
@@ -8,27 +8,52 @@ class AppActions {
       'setCurrentQuestion',
       'setCurrentAnswers',
       'resetAndEnd',
+      'addPlayer',
+      'playerSubmittedQuestion',
+      'playerSubmittedGuess',
+      'addGuessResults'
     );
   }
 
-  connection() {
-    let conn = new WebSocket('ws://10.10.11.61:9000');
+  connection(userType) {
+    let conn = new WebSocket('ws://10.10.11.85:9000');
 
     conn.onmessage = (payload) => {
       const data = JSON.parse(payload.data);
-      const { state } = data;
-      const { setAppState } = this.actions;
+      const { state, message } = data;
+      const {
+        setAppState,
+        addPlayer,
+        playerSubmittedQuestion,
+        playerSubmittedGuess,
+        addGuessResults
+      } = this.actions;
 
-      if (state === states.ANSWER) {
+      if (state === states.PENDING && message === messages.ADD_PLAYER) {
+        addPlayer(data.name);
+      }
+
+      if (state === states.ANSWER && message === messages.ANSWER_SUBMITTED) {
+        playerSubmittedQuestion(data.name);
+      } else if (state === states.ANSWER) {
         const { question, about } = data;
         const { setCurrentQuestion } = this.actions;
         setCurrentQuestion({ question, about });
       }
 
-      if (state === states.GUESSING) {
+      if (state === states.GUESSING && message === messages.GUESS_SUBMITTED) {
+        playerSubmittedGuess(data.name);
+        if (data.guesses_completed === true) {
+          conn.send(JSON.stringify({ state: states.RESULTS }));
+        }
+      } else if (state === states.GUESSING) {
         const { answers } = data;
         const { setCurrentAnswers } = this.actions;
         setCurrentAnswers(answers);
+      }
+
+      if (state === states.RESULTS) {
+        addGuessResults({ answers: data.answers, points: data.points });
       }
 
       setAppState(state);
@@ -38,19 +63,34 @@ class AppActions {
   }
 
   setPlayerName(name, state, conn) {
-    conn.send(JSON.stringify({state, name}));
+    conn.send(JSON.stringify({
+      state,
+      name,
+      user_type: userTypes.USER
+    }));
     this.dispatch(name);
   }
 
+  setConsole(state, conn) {
+    conn.send(JSON.stringify({
+      state,
+      user_type: userTypes.CONSOLE
+    }));
+  }
+
   startGame(conn) {
-    conn.send(JSON.stringify({state: 'start'}));
+    conn.send(JSON.stringify({state: states.START}));
+  }
+
+  consoleReady(conn) {
+    conn.send(JSON.stringify({state: states.READY}));
   }
 
   submitAnswer(name, answer, conn) {
     conn.send(JSON.stringify({
       name,
       answer,
-      state: 'answer'
+      state: states.ANSWER
     }));
   }
 
@@ -58,7 +98,7 @@ class AppActions {
     conn.send(JSON.stringify({
       name,
       player_voted_for: playerVotedFor,
-      state: 'guessing'
+      state: states.GUESSING
     }));
 
     this.dispatch(true);

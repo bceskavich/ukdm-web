@@ -4,10 +4,10 @@ import AppActions from '../../actions/AppActions';
 
 export default class GameLobby extends Component {
 
-  componentDidUpdate() {
-    const { appState } = this.props;
-    if (appState === states.START) {
-      setTimeout(() => AppActions.setAppState(states.ANSWER), 3000);
+  componentDidUpdate(prevProps) {
+    const { appState, conn } = this.props;
+    if (appState === states.START && prevProps.appState === states.PENDING) {
+      setTimeout(() => AppActions.consoleReady(conn), 3000);
     }
   }
 

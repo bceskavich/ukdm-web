@@ -16,6 +16,7 @@ class GameControllerStore {
     this.answers = [];
     this.submittedGuesses = [];
     this.guessResults = [];
+    this.points = [];
   }
 
   onConnection(conn) {
@@ -28,7 +29,6 @@ class GameControllerStore {
     this.appState = state;
   }
 
-  // TODO in AppActions
   onAddPlayer(player) {
     this.players.push(player);
   }
@@ -41,13 +41,13 @@ class GameControllerStore {
     this.answers = [];
     this.submittedGuesses = [];
     this.guessResults = [];
+    this.points = [];
 
     const { question, about } = payload;
     this.question = question;
     this.questionAbout = about;
   }
 
-  // TODO in AppActions
   onPlayerSubmittedQuestion(player) {
     this.submittedQuestions.push(player)
   }
@@ -57,14 +57,13 @@ class GameControllerStore {
     this.answers = answers;
   }
 
-  // TODO in AppActions
-  onPlayerSubmitttedGuess(player) {
-    This.submittedGuesses.push(player);
+  onPlayerSubmittedGuess(player) {
+    this.submittedGuesses.push(player);
   }
 
-  // TODO in AppActions
-  onAddGuessResult(result) {
-    this.guessResults.push(result);
+  onAddGuessResults(payload) {
+    this.guessResults = payload.answers;
+    this.points = payload.points;
   }
 
   onResetAndEnd() {

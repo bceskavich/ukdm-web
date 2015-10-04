@@ -2,19 +2,27 @@ import React, { Component } from 'react';
 
 export default class GuessesComponent extends Component {
   render() {
-    const { question, answers, submittedGuesses, guessResults } = this.props;
+    const { question, answers, submittedGuesses } = this.props;
 
     return (
       <div>
         <h2>{question}</h2>
         <p className='console-about'>The answers...</p>
         <ul className='console-questions-list'>
-          {answers.map(answer => <li>{answer}</li>)}
+          {
+            answers.map((answer, i) => {
+              return <li key={i}>{answer[1]}</li>;
+            })
+          }
         </ul>
         <br />
         <br />
         <ul className='console-questions-list'>
-          {submittedGuesses.map(player => <li>{player} submited a guess.</li>)}
+          {
+            submittedGuesses.map((player, i) => {
+              return <li key={i}>{player} submited a guess.</li>;
+            })
+          }
         </ul>
       </div>
     );

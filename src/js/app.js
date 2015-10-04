@@ -18,7 +18,8 @@ export default class App extends Component {
       questionAbout,
       submittedQuestions,
       submittedGuesses,
-      guessResults
+      guessResults,
+      points
     } = GameControllerStore.getState();
 
     return merge(AppStore.getState(), {
@@ -26,13 +27,18 @@ export default class App extends Component {
       questionAbout,
       submittedQuestions,
       submittedGuesses,
-      guessResults
+      guessResults,
+      points
     });
   }
 
   constructor(props) {
     super(props);
     AppActions.connection();
+  }
+
+  componentDidMount() {
+    console.log(this.props.appState);
   }
 
   render() {
