@@ -33,10 +33,12 @@ export default class GameConsolePage extends Component {
     const { players, appState } = this.props;
     return (
       <div className='game-console-page'>
+        <div className='game-console-page-content'>
         <GameLobby
           appState={appState}
           players={players}
         />
+        </div>
       </div>
     );
   }
@@ -45,11 +47,13 @@ export default class GameConsolePage extends Component {
     const { question, questionAbout, submittedQuestions } = this.props;
     return (
       <div className='game-console-page'>
+        <div className='game-console-page-content'>
         <SubmitQuestions
           question={question}
           about={questionAbout}
           submittedQuestions={submittedQuestions}
         />
+        </div>
       </div>
     );
   }
@@ -58,12 +62,14 @@ export default class GameConsolePage extends Component {
     const { question, answers, submittedGuesses, guessResults } = this.props;
     return (
       <div className='game-console-page'>
+        <div className='game-console-page-content'>
         <GuessesComponent
           question={question}
           answers={answers}
           submittedGuesses={submittedGuesses}
           guessResults={guessResults}
         />
+        </div>
       </div>
     );
   }

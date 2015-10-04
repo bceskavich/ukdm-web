@@ -7,8 +7,9 @@ export default class SubmitQuestions extends Component {
     return (
       <div>
         <h2>{question}</h2>
-        <p>This one's about {about}.</p>
-        <ul>
+        <p className='console-about'>This one's about {about}.</p>
+        <br />
+        <ul className='console-questions-list'>
           {submittedQuestions.map(player => {
             return <li>{player} submitted an answer.</li>;
           })}

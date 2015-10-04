@@ -7,7 +7,7 @@ class AppStore {
 
     this.conn = null;
 
-    this.appState = '';
+    this.appState = 'setup';
     this.playerName = '';
     this.question = '';
     this.answers = [];
