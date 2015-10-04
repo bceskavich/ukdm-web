@@ -6,7 +6,7 @@ module.exports = {
     port: 8888
   },
   server: {
-    port: 5000
+    port: (process.env.PORT || 5000)
   },
   webpack: {
     output: {
