@@ -12,9 +12,6 @@ export default class ResultsComponent extends Component {
   render() {
     const { question, guessResults, points } = this.props;
 
-    console.log(guessResults);
-    console.log(points);
-
     return (
       <div>
         <h2>{question}</h2>
@@ -23,24 +20,27 @@ export default class ResultsComponent extends Component {
           {
             guessResults.map((result, i) => {
               const { questionAbout } = this.props;
+              const guessedBy = result[2].join(',');
+
               return (
                 <li key={i}>
-                  <strong>Question</strong> - {result[1]}<br />
+                  <em>Answer</em> - {result[1]}<br />
                   {result[0]}'s {result[3]}!<br />
-                  <strong>Guessed By:</strong> - {
-                    result[2].map((person, j) => <span key={j}>{person} </span>)
-                  }<br />
+                  <em>Guessed By:</em> - {guessedBy ? guessedBy : 'No One'}
+                  <br />
+                  <br />
                 </li>
               );
             })
           }
         </ul>
         <br />
+        <h3>Points</h3>
         <ul className='console-questions-list'>
           {
             points.map((p, i) => {
               return (
-                <li><strong>{p[0]}</strong> - {p[1]}</li>
+                <li><em>{p[0]}</em> - {p[1]}</li>
               );
             })
           }

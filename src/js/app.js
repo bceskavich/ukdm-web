@@ -37,10 +37,6 @@ export default class App extends Component {
     AppActions.connection();
   }
 
-  componentDidMount() {
-    console.log(this.props.appState);
-  }
-
   render() {
     return (
       <div className='body'>

@@ -16,7 +16,7 @@ class AppActions {
   }
 
   connection(userType) {
-    let conn = new WebSocket('ws://10.10.11.85:9000');
+    let conn = new WebSocket('ws://ec2-52-23-221-3.compute-1.amazonaws.com:80');
 
     conn.onmessage = (payload) => {
       const data = JSON.parse(payload.data);
