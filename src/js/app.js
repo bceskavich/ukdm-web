@@ -1,9 +1,17 @@
-import React, { Component, cloneElement } from 'react';
+import React, { Component, PropTypes, cloneElement } from 'react';
 import connectToStores from 'alt/utils/connectToStores';
 import AppStore from './stores/AppStore';
+import AppActions from './actions/AppActions';
 
 @connectToStores
 export default class App extends Component {
+
+  static propTypes = {
+    appState: PropTypes.string.isRequired,
+    playerName: PropTypes.string.isRequired,
+    question: PropTypes.string.isRequired,
+    aboutMe: PropTypes.bool.isRequired
+  }
 
   static getStores() {
     return [AppStore];
@@ -13,12 +21,21 @@ export default class App extends Component {
     return AppStore.getState();
   }
 
-  render() {
-    const { playersList } = this.props;
+  constructor(props) {
+    super(props);
+    AppActions.connection();
+  }
 
+  // REMOVE - for testing
+  componentDidUpdate() {
+    const { appState } = this.props;
+    console.log(appState);
+  }
+
+  render() {
     return (
       <div className='body'>
-        {this.props.children && cloneElement(this.props.children, {playersList})}
+        {this.props.children && cloneElement(this.props.children, {...this.props})}
       </div>
     );
   }

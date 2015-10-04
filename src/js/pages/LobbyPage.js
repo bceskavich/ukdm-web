@@ -1,26 +1,35 @@
 import React, { Component, PropTypes } from 'react';
-import connectToStores from 'alt/utils/connectToStores';
+import AppActions from '../actions/AppActions';
 
 export default class LobbyPage extends Component {
 
   static propTypes = {
     // AppStore Props
-    playersList: PropTypes.array.isRequired,
-
-    // PlayerStore Props
     playerName: PropTypes.string.isRequired
   }
 
   render() {
-    const { playersList, playerName } = this.props;
+    const { playerName } = this.props;
 
     return (
       <div className='lobby'>
-        <h1>Welcome, {playerName}!</h1>
+        <div className='lobby-content'>
+          <h1>Welcome, {playerName}!</h1>
+          <div className='lobby-content-list'>
+            <p>Waiting on a few more to join...</p>
+          </div>
 
-        <strong>Current Players</strong>
-        <ul>{playersList.map(player => <li>{player}</li>)}</ul>
+          <button
+            className='lobby-button'
+            onClick={this.startGame.bind(this)}
+          >Start Game</button>
+        </div>
       </div>
     );
+  }
+
+  startGame() {
+    const { conn } = this.props;
+    AppActions.startGame(conn);
   }
 }

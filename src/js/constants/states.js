@@ -1,5 +1,8 @@
 export const states = {
-  PLAYER_UNIDENTIFIED: 'PLAYER_UNIDENTIFIED',
-  PLAYER_IDENTIFIED: 'PLAYER_IDENTIFIED',
-
+  SETUP: 'setup',
+  PENDING: 'pending',
+  START: 'start',
+  ANSWER: 'answer',
+  GUESSING: 'guessing',
+  END: 'end'
 }

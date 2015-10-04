@@ -1,3 +1,22 @@
-.home {
-  color: #333;
+.home-page {
+  @include vert-align;
+}
+
+.home-page__content {
+  @include vert-align__child;
+  margin-top: -200px;
+}
+
+.home-page__header {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.home-page__link {
+  @include link-button;
+
+  &:hover {
+    background-color: $color-blue;
+    color: #fff;
+  }
 }

@@ -1,25 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import connectToStores from 'alt/utils/connectToStores';
-import PlayerStore from '../stores/PlayerStore';
-import PlayerActions from '../actions/PlayerActions';
+import AppActions from '../actions/AppActions';
 
-@connectToStores
 export default class PlayerSignupPage extends Component {
 
   static propTypes = {
     // ReactRouter Props
     history: PropTypes.object.isRequired,
 
-    // PlayerStore Props
-    playerName: PropTypes.string.isRequired
-  }
-
-  static getStores() {
-    return [PlayerStore];
-  }
-
-  static getPropsFromStores() {
-    return PlayerStore.getState();
+    // AppStore Props
+    playerName: PropTypes.string.isRequired,
+    appState: PropTypes.string.isRequired
   }
 
   constructor(props) {
@@ -47,14 +37,20 @@ export default class PlayerSignupPage extends Component {
 
     return (
       <div className='player-signup'>
-        Player Signup
-
-        <input
-          type='text'
-          value={newPlayerName}
-          onChange={this.onNameInput.bind(this)}
-        />
-        <button onClick={this.submitPlayerName.bind(this)}>Submit</button>
+        <div className='player-signup-content'>
+          <h1>Pick Your Name</h1>
+          <input
+            className='player-signup-content__input'
+            type='text'
+            placeholder='Your name here...'
+            value={newPlayerName}
+            onChange={this.onNameInput.bind(this)}
+          />
+          <br />
+          <button
+            className='player-signup-content__button'
+            onClick={this.submitPlayerName.bind(this)}>Submit</button>
+        </div>
       </div>
     );
   }
@@ -65,7 +61,8 @@ export default class PlayerSignupPage extends Component {
 
   submitPlayerName() {
     const { newPlayerName } = this.state;
+    const { appState, conn } = this.props;
     this.setState({ newPlayerName: '' });
-    PlayerActions.setPlayerName(newPlayerName);
+    AppActions.setPlayerName(newPlayerName, appState, conn);
   }
 }

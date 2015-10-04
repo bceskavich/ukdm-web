@@ -5,6 +5,8 @@ import InGame from '../wrappers/InGame';
 import HomePage from '../pages/HomePage';
 import PlayerSignupPage from '../pages/PlayerSignupPage';
 import LobbyPage from '../pages/LobbyPage';
+import QuestionPage from '../pages/QuestionPage';
+import GuessingPage from '../pages/GuessingPage';
 
 const router = (
   <Router>
@@ -14,6 +16,8 @@ const router = (
 
       <Route component={InGame}>
         <Route path='/lobby' component={LobbyPage} />
+        <Route path='/question' component={QuestionPage} />
+        <Route path='/guessing' component={GuessingPage} />
       </Route>
     </Route>
   </Router>
