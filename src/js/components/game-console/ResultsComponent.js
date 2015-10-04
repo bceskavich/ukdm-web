@@ -6,7 +6,7 @@ export default class ResultsComponent extends Component {
     super(props);
 
     const { conn } = this.props;
-    setTimeout(() => AppActions.consoleReady(conn), 10000);
+    setTimeout(() => AppActions.consoleReady(conn), 20000);
   }
 
   render() {
