@@ -23,6 +23,11 @@ module.exports = merge(baseConfig, {
         exclude: [/node_modules/, /config/]
       },
       {
+        test: /\.js$/,
+        loaders: ['eslint-loader'],
+        exclude: [/node_modules/, /config/]
+      },
+      {
         test: /.?css$/,
         loaders: [
           'style',
@@ -32,6 +37,9 @@ module.exports = merge(baseConfig, {
         ]
       }
     ]
+  },
+  eslint: {
+    configFile: '.eslintrc'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

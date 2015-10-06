@@ -1,6 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class GuessesComponent extends Component {
+
+  static propTypes = {
+    question: PropTypes.string,
+    answers: PropTypes.array,
+    submittedGuesses: PropTypes.array
+  }
+
   render() {
     const { question, answers, submittedGuesses } = this.props;
 

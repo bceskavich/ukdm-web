@@ -5,6 +5,7 @@ export default class LobbyPage extends Component {
 
   static propTypes = {
     // AppStore Props
+    conn: PropTypes.object,
     playerName: PropTypes.string.isRequired
   }
 

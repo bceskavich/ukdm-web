@@ -3,8 +3,16 @@ import GuessingItem from '../components/guessing/GuessingItem';
 import AppActions from '../actions/AppActions';
 
 export default class GuessingPage extends Component {
+
+  static propTypes = {
+    aboutMe: PropTypes.bool,
+    guessSubmitted: PropTypes.bool,
+    playerName: PropTypes.string,
+    conn: PropTypes.object
+  }
+
   render() {
-    const { answers, aboutMe, guessSubmitted, playerName } = this.props;
+    const { aboutMe, guessSubmitted, playerName } = this.props;
     const answersForDisplay = answers.filter(answer => answer[0] !== playerName);
 
     return (
@@ -40,7 +48,7 @@ export default class GuessingPage extends Component {
   }
 
   submitGuess(answerForGuess) {
-    const { playerName, answer, conn } = this.props;
+    const { playerName, conn } = this.props;
     AppActions.submitVote(playerName, answerForGuess[0], conn);
   }
 }

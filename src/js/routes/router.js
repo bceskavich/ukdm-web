@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route, Router } from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory'
+import { Route, Router, IndexRoute } from 'react-router';
+import createHashHistory from 'history/lib/createHashHistory';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 import App from '../app';
 import InGame from '../wrappers/InGame';
 import HomePage from '../pages/HomePage';
@@ -10,10 +11,15 @@ import QuestionPage from '../pages/QuestionPage';
 import GuessingPage from '../pages/GuessingPage';
 import GameConsolePage from '../pages/GameConsolePage';
 
+let history = createHashHistory();
+if (DEPLOY !== 'static') {
+  history = createBrowserHistory();
+}
+
 const router = (
-  <Router history={createBrowserHistory()}>
-    <Route component={App}>
-      <Route path='/' component={HomePage} />
+  <Router history={history}>
+    <Route path='/' component={App}>
+      <IndexRoute component={HomePage} />
       <Route path='/game-console' component={GameConsolePage} />
       <Route path='/player-signup' component={PlayerSignupPage} />
 

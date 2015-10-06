@@ -5,11 +5,12 @@ export default class PlayerSignupPage extends Component {
 
   static propTypes = {
     // ReactRouter Props
-    history: PropTypes.object.isRequired,
+    history: PropTypes.object,
 
     // AppStore Props
-    playerName: PropTypes.string.isRequired,
-    appState: PropTypes.string.isRequired
+    conn: PropTypes.object,
+    playerName: PropTypes.string,
+    appState: PropTypes.string
   }
 
   constructor(props) {

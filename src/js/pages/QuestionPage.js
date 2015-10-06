@@ -4,8 +4,10 @@ import AppActions from '../actions/AppActions';
 export default class QuestionPage extends Component {
 
   static propTypes = {
-    question: PropTypes.string.isRequired,
-    aboutMe: PropTypes.bool.isRequired
+    question: PropTypes.string,
+    aboutMe: PropTypes.bool,
+    playerName: PropTypes.string,
+    conn: PropTypes.object
   }
 
   constructor(props) {

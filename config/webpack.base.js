@@ -4,6 +4,7 @@ var webpack             = require('webpack');
 var HtmlWebpackPlugin   = require('html-webpack-plugin');
 
 var configPlugin = new webpack.DefinePlugin({
+  DEPLOY: JSON.stringify(config.get('deploy')),
   'process.env': {
     NODE_ENV: JSON.stringify(config.get('env'))
   }
@@ -18,7 +19,10 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.(jpe?g|png|gif|svg|ico|pdf)$/i, loader: 'url-loader?limit=8192' }
+      {
+        test: /\.(jpe?g|png|gif|svg|ico|pdf)$/i,
+        loader: 'url-loader?limit=8192'
+      }
     ]
   },
   plugins: [

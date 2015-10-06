@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { states } from '../constants/states';
+import states from '../constants/stateConstants';
 import AppActions from '../actions/AppActions';
 import GameLobby from '../components/game-console/GameLobby';
 import SubmitQuestions from '../components/game-console/SubmitQuestions';
@@ -9,15 +9,15 @@ import ResultsComponent from '../components/game-console/ResultsComponent';
 export default class GameConsolePage extends Component {
 
   static propTypes = {
-    appState: PropTypes.string.isRequired,
-    players: PropTypes.array.isRequired,
-    question: PropTypes.string.isRequired,
-    questionAbout: PropTypes.string.isRequired,
-    submittedQuestions: PropTypes.array.isRequired,
-    answers: PropTypes.array.isRequired,
-    submittedGuesses: PropTypes.array.isRequired,
-    guessResults: PropTypes.array.isRequired,
-    points: PropTypes.array.isRequired
+    appState: PropTypes.string,
+    players: PropTypes.array,
+    question: PropTypes.string,
+    questionAbout: PropTypes.string,
+    submittedQuestions: PropTypes.array,
+    answers: PropTypes.array,
+    submittedGuesses: PropTypes.array,
+    guessResults: PropTypes.array,
+    points: PropTypes.array
   }
 
   constructor(props) {

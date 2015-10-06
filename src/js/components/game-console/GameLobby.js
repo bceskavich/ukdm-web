@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
-import { states } from '../../constants/states';
+import React, { Component, PropTypes } from 'react';
+import states from '../../constants/stateConstants';
 import AppActions from '../../actions/AppActions';
 
 export default class GameLobby extends Component {
+
+  static propTypes = {
+    appState: PropTypes.string,
+    conn: PropTypes.object,
+    players: PropTypes.array,
+  }
 
   componentDidUpdate(prevProps) {
     const { appState, conn } = this.props;

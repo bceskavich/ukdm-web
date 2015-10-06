@@ -1,5 +1,7 @@
 import alt from '../alt';
-import { states, userTypes, messages } from '../constants/states';
+import states from '../constants/stateConstants';
+import userTypes from '../constants/userTypeConstants';
+import ServerConnection from '../utils/ServerConnection';
 
 class AppActions {
   constructor() {
@@ -16,49 +18,7 @@ class AppActions {
   }
 
   connection(userType) {
-    let conn = new WebSocket('ws://ec2-52-23-221-3.compute-1.amazonaws.com:80');
-
-    conn.onmessage = (payload) => {
-      const data = JSON.parse(payload.data);
-      const { state, message } = data;
-      const {
-        setAppState,
-        addPlayer,
-        playerSubmittedQuestion,
-        playerSubmittedGuess,
-        addGuessResults
-      } = this.actions;
-
-      if (state === states.PENDING && message === messages.ADD_PLAYER) {
-        addPlayer(data.name);
-      }
-
-      if (state === states.ANSWER && message === messages.ANSWER_SUBMITTED) {
-        playerSubmittedQuestion(data.name);
-      } else if (state === states.ANSWER) {
-        const { question, about } = data;
-        const { setCurrentQuestion } = this.actions;
-        setCurrentQuestion({ question, about });
-      }
-
-      if (state === states.GUESSING && message === messages.GUESS_SUBMITTED) {
-        playerSubmittedGuess(data.name);
-        if (data.guesses_completed === true) {
-          conn.send(JSON.stringify({ state: states.RESULTS }));
-        }
-      } else if (state === states.GUESSING) {
-        const { answers } = data;
-        const { setCurrentAnswers } = this.actions;
-        setCurrentAnswers(answers);
-      }
-
-      if (state === states.RESULTS) {
-        addGuessResults({ answers: data.answers, points: data.points });
-      }
-
-      setAppState(state);
-    }
-
+    const conn = new ServerConnection('ws://ec2-52-23-221-3.compute-1.amazonaws.com:80');
     this.dispatch(conn);
   }
 

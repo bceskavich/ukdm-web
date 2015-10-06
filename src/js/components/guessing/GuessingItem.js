@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class GuessingItem extends Component {
+
+  static propTypes = {
+    answer: PropTypes.string,
+    submitGuess: PropTypes.func
+  }
+
   render() {
     const { answer } = this.props;
 

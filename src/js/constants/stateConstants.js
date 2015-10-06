@@ -1,4 +1,4 @@
-export const states = {
+const states = {
   SETUP: 'setup',
   PENDING: 'pending',
   START: 'start',
@@ -7,7 +7,9 @@ export const states = {
   GUESSING: 'guessing',
   RESULTS: 'results',
   END: 'end'
-}
+};
+
+export default states;
 
 export const userTypes = {
   CONSOLE: 'console',

@@ -1,18 +1,24 @@
-import React, { Component, PropTypes, cloneElement } from 'react';
-import { states } from '../constants/states';
+import React, { Component, PropTypes } from 'react';
+import states from '../constants/stateConstants';
+import renderRouteChildren from '../utils/renderRouteChildren';
 
 export default class InGame extends Component {
 
   static propTypes = {
     // ReactRouter Props
-    history: PropTypes.object.isRequired,
+    history: PropTypes.object,
+    location: PropTypes.object,
+
+    // AppStore Props
+    conn: PropTypes.object,
 
     // PlayerStore Props
-    appState: PropTypes.string.isRequired,
-    playerName: PropTypes.string.isRequired,
-    question: PropTypes.string.isRequired,
-    aboutMe: PropTypes.bool.isRequired,
-    answers: PropTypes.array.isRequired
+    appState: PropTypes.string,
+    playerName: PropTypes.string,
+    question: PropTypes.string,
+    aboutMe: PropTypes.bool,
+    answers: PropTypes.array,
+    guessSubmitted: PropTypes.bool,
   }
 
   constructor(props) {
@@ -27,27 +33,9 @@ export default class InGame extends Component {
   }
 
   render() {
-    const {
-      appState,
-      playerName,
-      question,
-      answers,
-      aboutMe,
-      guessSubmitted,
-      conn
-    } = this.props;
-
     return (
       <span>
-        {this.props.children && cloneElement(this.props.children, {
-          appState,
-          playerName,
-          question,
-          answers,
-          aboutMe,
-          guessSubmitted,
-          conn
-        })}
+        {renderRouteChildren(this.props)}
       </span>
     );
   }

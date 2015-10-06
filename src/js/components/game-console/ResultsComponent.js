@@ -1,7 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import AppActions from '../../actions/AppActions';
 
 export default class ResultsComponent extends Component {
+
+  static propTypes = {
+    // GameControllerStore props
+    conn: PropTypes.object,
+    question: PropTypes.string,
+    guessResults: PropTypes.array,
+    points: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
 
@@ -19,7 +28,6 @@ export default class ResultsComponent extends Component {
         <ul className='console-questions-list'>
           {
             guessResults.map((result, i) => {
-              const { questionAbout } = this.props;
               const guessedBy = result[2].join(',');
 
               return (

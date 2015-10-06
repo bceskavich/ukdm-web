@@ -1,6 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class SubmitQuestions extends Component {
+
+  static propTypes = {
+    question: PropTypes.string,
+    about: PropTypes.string,
+    submittedQuestions: PropTypes.array
+  }
+
   render() {
     const { question, about, submittedQuestions } = this.props;
 
