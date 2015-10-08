@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import GuessingItem from '../components/guessing/GuessingItem';
-import AppActions from '../actions/AppActions';
+import PlayerActions from '../actions/PlayerActions';
 
 export default class GuessingPage extends Component {
 
@@ -49,6 +49,6 @@ export default class GuessingPage extends Component {
 
   submitGuess(answerForGuess) {
     const { playerName, conn } = this.props;
-    AppActions.submitVote(playerName, answerForGuess[0], conn);
+    PlayerActions.submitVote(playerName, answerForGuess[0], conn);
   }
 }

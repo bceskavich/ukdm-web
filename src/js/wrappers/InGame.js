@@ -11,8 +11,6 @@ export default class InGame extends Component {
 
     // AppStore Props
     conn: PropTypes.object,
-
-    // PlayerStore Props
     appState: PropTypes.string,
     playerName: PropTypes.string,
     question: PropTypes.string,

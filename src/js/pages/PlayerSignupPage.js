@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AppActions from '../actions/AppActions';
+import PlayerActions from '../actions/PlayerActions';
 
 export default class PlayerSignupPage extends Component {
 
@@ -64,6 +64,6 @@ export default class PlayerSignupPage extends Component {
     const { newPlayerName } = this.state;
     const { appState, conn } = this.props;
     this.setState({ newPlayerName: '' });
-    AppActions.setPlayerName(newPlayerName, appState, conn);
+    PlayerActions.setPlayerName(newPlayerName, appState, conn);
   }
 }

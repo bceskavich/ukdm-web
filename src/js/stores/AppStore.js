@@ -6,13 +6,9 @@ class AppStore {
     this.bindActions(AppActions);
 
     this.conn = null;
-
     this.appState = 'setup';
-    this.playerName = '';
     this.question = '';
     this.answers = [];
-    this.guessSubmitted = false;
-    this.aboutMe = false;
   }
 
   onConnection(conn) {
@@ -23,35 +19,19 @@ class AppStore {
     this.appState = state;
   }
 
-  onSetPlayerName(name) {
-    this.playerName = name;
-  }
-
-  onSetCurrentQuestion(payload) {
-    this.question = payload.question;
-    this.guessSubmitted = false;
-    if (payload.about === this.playerName) {
-      this.aboutMe = true;
-    } else {
-      this.aboutMe = false;
-    }
+  onSetCurrentQuestion(question) {
+    this.question = question;
   }
 
   onSetCurrentAnswers(answers) {
     this.answers = answers;
   }
 
-  onSubmitVote() {
-    this.guessSubmitted = true;
-  }
-
   onResetAndEnd() {
-    this.appState = '';
-    this.playerName = '';
+    this.conn = null;
+    this.appState = 'setup';
     this.question = '';
     this.answers = [];
-    this.guessSubmitted = false;
-    this.aboutMe = false;
   }
 }
 

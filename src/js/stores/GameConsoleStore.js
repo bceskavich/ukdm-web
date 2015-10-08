@@ -2,7 +2,7 @@ import alt from '../alt';
 import AppActions from '../actions/AppActions';
 import AppStore from './AppStore';
 
-class GameControllerStore {
+class GameConsoleStore {
   constructor() {
     this.bindActions(AppActions);
 
@@ -78,4 +78,4 @@ class GameControllerStore {
   }
 }
 
-export default alt.createStore(GameControllerStore, 'GameControllerStore');
+export default alt.createStore(GameConsoleStore, 'GameConsoleStore');

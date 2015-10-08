@@ -1,6 +1,7 @@
 import states from '../constants/stateConstants';
 import messages from '../constants/messagesConstants';
 import AppActions from '../actions/AppActions';
+import PlayerActions from '../actions/PlayerActions';
 
 export default class ServerConnection extends Object {
 
@@ -50,7 +51,8 @@ export default class ServerConnection extends Object {
       AppActions.playerSubmittedQuestion(data.name);
     } else {
       const { question, about } = data;
-      AppActions.setCurrentQuestion({ question, about });
+      AppActions.setCurrentQuestion(question);
+      PlayerActions.setAboutMe(about);
     }
   }
 

@@ -3,7 +3,7 @@ import merge from 'lodash/object/merge';
 import connectToStores from 'alt/utils/connectToStores';
 import renderRouteChildren from './utils/renderRouteChildren';
 import AppStore from './stores/AppStore';
-import GameControllerStore from './stores/GameControllerStore';
+import GameConsoleStore from './stores/GameConsoleStore';
 import AppActions from './actions/AppActions';
 
 @connectToStores
@@ -19,7 +19,7 @@ export default class App extends Component {
     guessSubmitted: PropTypes.bool.isRequired,
     aboutMe: PropTypes.bool.isRequired,
 
-    // GameControllerStore Props
+    // GameConsoleStore Props
     players: PropTypes.array.isRequired,
     questionAbout: PropTypes.string.isRequired,
     submittedQuestions: PropTypes.array.isRequired,
@@ -29,7 +29,7 @@ export default class App extends Component {
   }
 
   static getStores() {
-    return [AppStore, GameControllerStore];
+    return [AppStore, GameConsoleStore];
   }
 
   static getPropsFromStores() {
@@ -40,7 +40,7 @@ export default class App extends Component {
       submittedGuesses,
       guessResults,
       points
-    } = GameControllerStore.getState();
+    } = GameConsoleStore.getState();
 
     return merge(AppStore.getState(), {
       players,

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AppActions from '../actions/AppActions';
+import PlayerActions from '../actions/PlayerActions';
 
 export default class QuestionPage extends Component {
 
@@ -62,6 +62,6 @@ export default class QuestionPage extends Component {
     const { playerName, conn } = this.props;
 
     this.setState({ answer: '', disabled: true });
-    AppActions.submitAnswer(playerName, answer, conn);
+    PlayerActions.submitAnswer(playerName, answer, conn);
   }
 }
