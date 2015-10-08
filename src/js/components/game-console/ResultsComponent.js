@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AppActions from '../../actions/AppActions';
+import ConsoleActions from '../../actions/ConsoleActions';
 
 export default class ResultsComponent extends Component {
 
@@ -15,7 +15,7 @@ export default class ResultsComponent extends Component {
     super(props);
 
     const { conn } = this.props;
-    setTimeout(() => AppActions.consoleReady(conn), 20000);
+    setTimeout(() => ConsoleActions.consoleReady(conn), 20000);
   }
 
   render() {

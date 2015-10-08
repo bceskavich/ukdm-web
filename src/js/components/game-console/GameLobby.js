@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import states from '../../constants/stateConstants';
-import AppActions from '../../actions/AppActions';
+import ConsoleActions from '../../actions/ConsoleActions';
 
 export default class GameLobby extends Component {
 
@@ -13,7 +13,7 @@ export default class GameLobby extends Component {
   componentDidUpdate(prevProps) {
     const { appState, conn } = this.props;
     if (appState === states.START && prevProps.appState === states.PENDING) {
-      setTimeout(() => AppActions.consoleReady(conn), 3000);
+      setTimeout(() => ConsoleActions.consoleReady(conn), 3000);
     }
   }
 

@@ -1,60 +1,35 @@
 import alt from '../alt';
-import AppActions from '../actions/AppActions';
-import AppStore from './AppStore';
+import ConsoleActions from '../actions/ConsoleActions';
 
 class GameConsoleStore {
   constructor() {
-    this.bindActions(AppActions);
+    this.bindActions(ConsoleActions);
 
-    this.conn = null;
-
-    this.appState = '';
     this.players = [];
-    this.question = '';
     this.questionAbout = '';
     this.submittedQuestions = [];
-    this.answers = [];
     this.submittedGuesses = [];
     this.guessResults = [];
     this.points = [];
-  }
-
-  onConnection(conn) {
-    this.waitFor(AppStore.dispatchToken);
-    this.conn = conn;
-  }
-
-  onSetAppState(state) {
-    this.waitFor(AppStore.dispatchToken);
-    this.appState = state;
   }
 
   onAddPlayer(player) {
     this.players.push(player);
   }
 
-  onSetCurrentQuestion(payload) {
-    this.waitFor(AppStore.dispatchToken);
-
+  onSetCurrentQuestion(questionAbout) {
     // Reset Answers Queue
     this.submittedQuestions = [];
-    this.answers = [];
     this.submittedGuesses = [];
     this.guessResults = [];
     this.points = [];
 
-    const { question, about } = payload;
-    this.question = question;
-    this.questionAbout = about;
+    // Set about
+    this.questionAbout = questionAbout;
   }
 
   onPlayerSubmittedQuestion(player) {
     this.submittedQuestions.push(player)
-  }
-
-  onSetCurrentAnswers(answers) {
-    this.waitFor(AppStore.dispatchToken);
-    this.answers = answers;
   }
 
   onPlayerSubmittedGuess(player) {
@@ -67,14 +42,12 @@ class GameConsoleStore {
   }
 
   onResetAndEnd() {
-    this.appState = '';
     this.players = [];
-    this.question = '';
     this.questionAbout = '';
     this.submittedQuestions = [];
-    this.answers = [];
     this.submittedGuesses = [];
     this.guessResults = [];
+    this.points = [];
   }
 }
 

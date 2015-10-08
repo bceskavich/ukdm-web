@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AppActions from '../actions/AppActions';
+import PlayerActions from '../actions/PlayerActions';
 
 export default class LobbyPage extends Component {
 
@@ -31,6 +31,6 @@ export default class LobbyPage extends Component {
 
   startGame() {
     const { conn } = this.props;
-    AppActions.startGame(conn);
+    PlayerActions.startGame(conn);
   }
 }

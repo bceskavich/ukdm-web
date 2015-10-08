@@ -6,9 +6,7 @@ import ServerConnection from '../utils/ServerConnection';
 class ConsoleActions {
   constructor() {
     this.generateActions(
-      'setAppState',
       'setCurrentQuestion',
-      'setCurrentAnswers',
       'resetAndEnd',
       'addPlayer',
       'playerSubmittedQuestion',
@@ -22,15 +20,6 @@ class ConsoleActions {
     this.dispatch(conn);
   }
 
-  setPlayerName(name, state, conn) {
-    conn.send(JSON.stringify({
-      state,
-      name,
-      user_type: userTypes.USER
-    }));
-    this.dispatch(name);
-  }
-
   setConsole(state, conn) {
     conn.send(JSON.stringify({
       state,
@@ -38,30 +27,8 @@ class ConsoleActions {
     }));
   }
 
-  startGame(conn) {
-    conn.send(JSON.stringify({state: states.START}));
-  }
-
   consoleReady(conn) {
     conn.send(JSON.stringify({state: states.READY}));
-  }
-
-  submitAnswer(name, answer, conn) {
-    conn.send(JSON.stringify({
-      name,
-      answer,
-      state: states.ANSWER
-    }));
-  }
-
-  submitVote(name, playerVotedFor, conn) {
-    conn.send(JSON.stringify({
-      name,
-      player_voted_for: playerVotedFor,
-      state: states.GUESSING
-    }));
-
-    this.dispatch(true);
   }
 }
 

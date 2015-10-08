@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import states from '../constants/stateConstants';
-import AppActions from '../actions/AppActions';
+import ConsoleActions from '../actions/ConsoleActions';
 import GameLobby from '../components/game-console/GameLobby';
 import SubmitQuestions from '../components/game-console/SubmitQuestions';
 import GuessesComponent from '../components/game-console/GuessesComponent';
@@ -24,12 +24,11 @@ export default class GameConsolePage extends Component {
     super(props);
 
     const { appState, conn } = this.props;
-    AppActions.setConsole(appState, conn);
+    ConsoleActions.setConsole(appState, conn);
   }
 
   render() {
     const { appState } = this.props;
-    console.log(appState);
 
     if (appState === states.SETUP || appState === states.PENDING || appState === states.START) {
       return this.renderLobby();

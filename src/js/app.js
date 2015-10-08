@@ -4,6 +4,7 @@ import connectToStores from 'alt/utils/connectToStores';
 import renderRouteChildren from './utils/renderRouteChildren';
 import AppStore from './stores/AppStore';
 import GameConsoleStore from './stores/GameConsoleStore';
+import PlayerStore from './stores/PlayerStore';
 import AppActions from './actions/AppActions';
 
 @connectToStores
@@ -13,9 +14,11 @@ export default class App extends Component {
     // AppStore props
     conn: PropTypes.object.isRequired,
     appState: PropTypes.object.isRequired,
-    playerName: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
     answers: PropTypes.array.isRequired,
+
+    // PlayerStore props
+    playerName: PropTypes.string.isRequired,
     guessSubmitted: PropTypes.bool.isRequired,
     aboutMe: PropTypes.bool.isRequired,
 
@@ -29,27 +32,15 @@ export default class App extends Component {
   }
 
   static getStores() {
-    return [AppStore, GameConsoleStore];
+    return [AppStore, GameConsoleStore, PlayerStore];
   }
 
   static getPropsFromStores() {
-    const {
-      players,
-      questionAbout,
-      submittedQuestions,
-      submittedGuesses,
-      guessResults,
-      points
-    } = GameConsoleStore.getState();
-
-    return merge(AppStore.getState(), {
-      players,
-      questionAbout,
-      submittedQuestions,
-      submittedGuesses,
-      guessResults,
-      points
-    });
+    return merge(
+      AppStore.getState(),
+      PlayerStore.getState(),
+      GameConsoleStore.getState()
+    );
   }
 
   constructor(props) {

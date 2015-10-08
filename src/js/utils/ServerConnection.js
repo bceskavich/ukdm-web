@@ -2,6 +2,7 @@ import states from '../constants/stateConstants';
 import messages from '../constants/messagesConstants';
 import AppActions from '../actions/AppActions';
 import PlayerActions from '../actions/PlayerActions';
+import ConsoleActions from '../actions/ConsoleActions';
 
 export default class ServerConnection extends Object {
 
@@ -40,7 +41,7 @@ export default class ServerConnection extends Object {
   handlePending(data) {
     const { message } = data;
     if (message === messages.ADD_PLAYER) {
-      AppActions.addPlayer(data.name);
+      ConsoleActions.addPlayer(data.name);
     }
   }
 
@@ -48,10 +49,13 @@ export default class ServerConnection extends Object {
     const { message } = data;
 
     if (message === messages.ANSWER_SUBMITTED) {
-      AppActions.playerSubmittedQuestion(data.name);
+      ConsoleActions.playerSubmittedQuestion(data.name);
     } else {
       const { question, about } = data;
+
+      // TODO - clean this up!
       AppActions.setCurrentQuestion(question);
+      ConsoleActions.setCurrentQuestion(about);
       PlayerActions.setAboutMe(about);
     }
   }
@@ -60,7 +64,7 @@ export default class ServerConnection extends Object {
     const { message } = data;
 
     if (message === messages.GUESS_SUBMITTED) {
-      AppActions.playerSubmittedGuess(data.name);
+      ConsoleActions.playerSubmittedGuess(data.name);
 
       if (data.guesses_completed) {
         this.send(JSON.stringify({ state: states.RESULT }));
@@ -73,6 +77,6 @@ export default class ServerConnection extends Object {
 
   handleResults(data) {
     const { answers, points } = data;
-    AppActions.addGuessResults({ answers, points });
+    ConsoleActions.addGuessResults({ answers, points });
   }
 }

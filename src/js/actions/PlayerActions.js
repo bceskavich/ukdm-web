@@ -10,6 +10,10 @@ class PlayerActions {
     );
   }
 
+  startGame(conn) {
+    conn.send(JSON.stringify({state: states.START}));
+  }
+
   setPlayerName(name, state, conn) {
     conn.send(JSON.stringify({
       state,
