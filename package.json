@@ -2,9 +2,13 @@
   "name": "udkme-web",
   "version": "0.0.1",
   "description": "Front-end for You Don't Know Me. Hack Upstate Fall 2015.",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "clean": "rm -rf build/*",
     "lint": "eslint src",
+    "test": "jest",
     "build": "npm run clean && webpack --progress --colors --config config/webpack.production.js",
     "dev": "npm run clean && nodemon --exec babel-node --stage 0 -- dev-server.js",
     "stage": "NODE_ENV=production npm run build && surge --project ./build --domain udontknowme.surge.sh",
@@ -50,6 +54,16 @@
   "devDependencies": {
     "eslint": "^1.0.0-rc-1",
     "babel-eslint": "^3.1.23",
-    "eslint-plugin-react": "^2.7.1"
+    "eslint-plugin-react": "^2.7.1",
+    "babel-jest": "^5.3.0",
+    "jest-cli": "^0.5.10"
+  },
+  "jest": {
+    "testDirectoryName": "test",
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/src/js/alt.js",
+      "<rootDir>/node_modules/alt"
+    ]
   }
 }

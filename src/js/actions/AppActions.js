@@ -11,7 +11,7 @@ class AppActions {
     );
   }
 
-  connection(userType) {
+  connection() {
     const conn = new ServerConnection('ws://ec2-52-23-221-3.compute-1.amazonaws.com:80');
     this.dispatch(conn);
   }
