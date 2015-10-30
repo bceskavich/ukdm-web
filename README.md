@@ -2,6 +2,4 @@
 
 Hack Upstate Fall 2015.
 
-React + Flux + WebSockets + A little bit of sleep-deprived insanity.
-
-Backend [here](https://github.com/jordanmessina/udontknowme).
+U Don't Know Me is still being built by [Billy Ceskavich](https://github.com/bceskavich) and [Jordan Messina](https://github.com/jordanmessina)! Check out our [new repo](https://github.com/udontknowmeapp/udontknowme) for all the dirty details.
